@@ -20,20 +20,22 @@ idx = zeros(size(X,1), 1);
 %
 % Note: You can use a for-loop over the examples to compute this.
 %
-
-for i = 1:size(X,1)     % 遍历每一个点
-    distance = inf;     % 该点到各中心点中最短的那个距离
-    for j = 1:K         % 遍历聚类中心        
-        if distance >  sum((X(i, :) - centroids(j, :)).^2)
-            distance = sum((X(i, :) - centroids(j, :)).^2);
-            idx(i) = j;
-        end
-    end    
+for i = 1:size(X,1)
+  dist = inf;
+  for j = 1:K
+    #dist(j) = (X(i,1)-centroids(j,1))^2+(X(i,2)-centroids(j,2))^2;
+    if dist > sum((X(i,:)-centroids(j,:)).^2)
+      dist = sum((X(i,:)-centroids(j,:)).^2);
+      idx(i) = j;
+    end
+    j++;
+  end
+  i++;
 end
 
 
 % =============================================================
 
 end
-return
+
 
